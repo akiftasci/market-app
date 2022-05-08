@@ -13,7 +13,7 @@ public class Util {
      * @return LocalDateTime object converted to String.
      **/
     public static String convertLocalDateTimeToString(final LocalDateTime created) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
         return formatter.format(created);
     }
@@ -24,7 +24,7 @@ public class Util {
      * @return String converted to LocalDateTime object.
      **/
     public static LocalDateTime convertStringToLocalDateTime(final String created) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
         return LocalDateTime.parse(created, formatter);
     }
@@ -38,8 +38,8 @@ public class Util {
         AppleBag appleBag = new AppleBag();
 
         appleBag.setAmount(appleBagDto.getAmount());
-        appleBag.setPrice(appleBag.getPrice());
-        appleBag.setSupplier(appleBag.getSupplier());
+        appleBag.setPrice(appleBagDto.getPrice());
+        appleBag.setSupplier(appleBagDto.getSupplier());
 
         return appleBag;
     }
@@ -49,6 +49,9 @@ public class Util {
 
         appleBagDto.setId(entity.getId());
         appleBagDto.setDate(convertLocalDateTimeToString(entity.getCreated()));
+        appleBagDto.setAmount(entity.getAmount());
+        appleBagDto.setPrice(entity.getPrice());
+        appleBagDto.setSupplier(entity.getSupplier());
 
         return appleBagDto;
     }
