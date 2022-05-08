@@ -10,5 +10,4 @@ spring:
     show-sql: true
 
 defaults:
-  account:
-    limits: 200
+  bag-number: 3
