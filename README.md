@@ -11,7 +11,7 @@ port and credentials. Run the following commands to create a jar file.
 
 `mvn clean install`
 
-Under the target folder run the jar file with `java -jar *.jar` command. The application should be ready on your local host port:`8080`(if the port is not already in use).
+Under the target folder run the jar file with `java -jar *.jar` command. The application should be ready on your localhost port:`8080`(if the port is not already in use).
 
 ---
 ## Author
