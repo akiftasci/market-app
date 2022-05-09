@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
+@Validated
 public class AppleBagController {
     @Value("${defaults.bag-number}")
     private int defaultBagNumber;
@@ -28,14 +30,14 @@ public class AppleBagController {
     }
 
     @PostMapping(value = "/")
-    public AppleBagDto createAccount(@RequestBody final AppleBagDto requestBody){
+    public AppleBagDto createAccount(@Valid @RequestBody final AppleBagDto requestBody){
         final AppleBag appleBag = Util.convertToEntity(requestBody);
         final AppleBag persistedEntity = appleBagService.persistData(appleBag);
 
         return Util.convertEntityToDto(persistedEntity);
     }
     @GetMapping(value ={ "/" , "/{bagNumber}"})
-    public List<AppleBag> getAppleBags(@Valid @PathVariable Optional<Integer> bagNumber){
+    public List<AppleBagDto> getAppleBags(@Valid @PathVariable Optional<Integer> bagNumber){
         return appleBagService.getAppleBags(bagNumber.orElse(defaultBagNumber));
     }
 }
