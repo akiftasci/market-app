@@ -19,9 +19,14 @@ public class AppleBagService {
 
     public List<AppleBag> getAppleBags(final int no){
         final long count = appleMarketRepository.findAll().size();
+
         if (count < no ){
             throw new RuntimeException();
         }
-       return appleMarketRepository.findAll().stream().limit(no).collect(Collectors.toList());
+
+       return appleMarketRepository.findAll()
+           .stream()
+           .limit(no)
+           .collect(Collectors.toList());
     }
 }
