@@ -6,6 +6,7 @@ import com.ing.appleMarket.service.AppleBagService;
 import com.ing.appleMarket.utils.Util;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,15 +29,13 @@ public class AppleBagController {
 
     @PostMapping(value = "/")
     public AppleBagDto createAccount(@RequestBody final AppleBagDto requestBody){
-
         final AppleBag appleBag = Util.convertToEntity(requestBody);
         final AppleBag persistedEntity = appleBagService.persistData(appleBag);
 
         return Util.convertEntityToDto(persistedEntity);
     }
     @GetMapping(value ={ "/" , "/{bagNumber}"})
-    public List<AppleBag> getAppleBags(@PathVariable Optional<Integer> bagNumber){
+    public List<AppleBag> getAppleBags(@Valid @PathVariable Optional<Integer> bagNumber){
         return appleBagService.getAppleBags(bagNumber.orElse(defaultBagNumber));
-
     }
 }
