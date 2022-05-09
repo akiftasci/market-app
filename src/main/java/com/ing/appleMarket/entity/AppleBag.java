@@ -1,5 +1,6 @@
 package com.ing.appleMarket.entity;
 
+import com.ing.appleMarket.validator.Supplier;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,14 +22,15 @@ public class AppleBag {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
     @Column(name = "amount")
-    @DecimalMin(value = "1" , message = "Minimum amount can be 1")
+    @DecimalMin(value = "1", message = "Minimum amount can be 1")
     @DecimalMax(value = "100", message = "Maximum amount can be 100")
     private int amount;
 
+    @Supplier
     @Column(name = "supplier")
     private String supplier;
 
@@ -40,5 +42,4 @@ public class AppleBag {
     @DecimalMin(value = "1", message = "Minimum amount can be 1")
     @DecimalMax(value = "50", message = "Maximum amount can be 50")
     private int price;
-
 }
