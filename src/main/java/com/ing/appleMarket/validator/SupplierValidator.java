@@ -10,6 +10,6 @@ public class SupplierValidator implements ConstraintValidator<Supplier, String> 
 
     @Override
     public boolean isValid(final String s, final ConstraintValidatorContext context) {
-        return suppliers.contains(s);
+        return suppliers.stream().anyMatch(s::equalsIgnoreCase);
     }
 }
