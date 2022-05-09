@@ -32,9 +32,8 @@ public class AppleBagController {
     @PostMapping(value = "/")
     public AppleBagDto createAccount(@Valid @RequestBody final AppleBagDto requestBody){
         final AppleBag appleBag = Util.convertToEntity(requestBody);
-        final AppleBag persistedEntity = appleBagService.persistData(appleBag);
 
-        return Util.convertEntityToDto(persistedEntity);
+        return appleBagService.persistData(appleBag);
     }
     @GetMapping(value ={ "/" , "/{bagNumber}"})
     public List<AppleBagDto> getAppleBags(@Valid @PathVariable Optional<Integer> bagNumber){

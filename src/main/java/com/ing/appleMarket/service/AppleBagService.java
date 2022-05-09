@@ -16,8 +16,8 @@ public class AppleBagService {
         this.appleMarketRepository = appleMarketRepository;
     }
 
-    public AppleBag persistData(final AppleBag appleBag) {
-        return appleMarketRepository.save(appleBag);
+    public AppleBagDto persistData(final AppleBag appleBag) {
+        return Util.convertEntityToDto(appleMarketRepository.save(appleBag));
     }
 
     public List<AppleBagDto> getAppleBags(final int no) {
